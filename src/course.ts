@@ -58,3 +58,38 @@ export async function findCourseWithModule() {
     },
   });
 }
+
+export async function findCourseByName(name: string) {
+  return prisma.course.findMany({
+    where: {
+      name: {
+        startsWith: name,
+        mode: "insensitive",
+      },
+    },
+  });
+}
+
+export async function findCourseOr(name: string) {
+  return prisma.course.findMany({
+    where: {
+      OR: [
+        {
+          name: {
+            contains: "Node",
+          },
+        },
+      ],
+      AND: {
+        duration: 200,
+      },
+    },
+  });
+}
+
+export async function findCoursesPaginated() {
+  return prisma.course.findMany({
+    skip: 1,
+    take: 2,
+  });
+}

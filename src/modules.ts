@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { Module, Prisma, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -24,4 +24,8 @@ export async function createModule() {
       module_id: "a27cf860-b573-4762-9662-87a1d18acc5e",
     },
   });
+}
+
+export async function findModulesRaw() {
+  return prisma.$queryRaw<Module[]>(Prisma.sql`SELECT * FROM modules`);
 }
