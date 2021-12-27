@@ -1,7 +1,7 @@
-import { findCourses } from "./course";
+import { createAuthor } from "./authors";
 
 async function main() {
-  const result = await findCourses();
+  const result = await createAuthor();
 
   console.log(result);
 }
