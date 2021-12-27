@@ -19,7 +19,29 @@ model Course {
   teacher     Teacher? @relation(fields: [teacher_id], references: [id])
   teacher_id  String?  @unique
 
+  modules CourseModule[]
   @@map("courses")
+}
+
+model Module {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  created_at  DateTime @default(now())
+
+  courses CourseModule[]
+  @@map("modules")
+}
+
+model CourseModule {
+  id         String   @id @default(uuid())
+  course_id  String
+  course     Course   @relation(fields: [course_id], references: [id])
+  module_id  String
+  module     Module   @relation(fields: [module_id], references: [id])
+  created_at DateTime @default(now())
+
+  @@map("courses_modules")
 }
 
 model Teacher {

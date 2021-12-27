@@ -46,3 +46,15 @@ export async function updateCourse(name: string) {
     },
   });
 }
+
+export async function findCourseWithModule() {
+  return prisma.course.findMany({
+    include: {
+      modules: {
+        select: {
+          module: true,
+        },
+      },
+    },
+  });
+}

@@ -1,9 +1,9 @@
-import { createAuthor } from "./authors";
+import { findCourseWithModule } from "./course";
 
 async function main() {
-  const result = await createAuthor();
+  const result = await findCourseWithModule();
 
-  console.log(result);
+  console.log(JSON.stringify(result, null, 2));
 }
 
 main();
